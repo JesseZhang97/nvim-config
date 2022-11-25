@@ -21,6 +21,7 @@ telescope.setup({
 
     file_ignore_patterns = {
       'node_modules',
+      '.git/',
     },
 
     mappings = {
@@ -145,7 +146,7 @@ end)
 vim.keymap.set('n', ';e', function()
   builtin.diagnostics()
 end)
-vim.keymap.set('n', 'sf', function()
+vim.keymap.set('n', ';F', function()
   telescope.extensions.file_browser.file_browser({
     path = '%:p:h',
     cwd = telescope_buffer_dir(),
@@ -155,5 +156,10 @@ vim.keymap.set('n', 'sf', function()
     previewer = false,
     initial_mode = 'normal',
     layout_config = { height = 40 },
+  })
+end)
+vim.keymap.set('n', ';gs', function()
+  builtin.git_status({
+    initial_mode = 'normal',
   })
 end)

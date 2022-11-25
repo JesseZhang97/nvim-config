@@ -162,11 +162,16 @@ ins_left({
     end
     return msg
   end,
-  icon = ' LSP:',
+  -- icon = ' LSP:',
+  icon = ':',
   color = { fg = colors.fg, gui = '' },
 })
 
 -- Add components to right sections
+ins_right({
+  'filetype',
+})
+
 ins_right({
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)

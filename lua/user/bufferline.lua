@@ -59,6 +59,6 @@ bufferline.setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<TAB>', '<CMD>BufferLineCycleNext<CR>', {})
-vim.api.nvim_set_keymap('n', '<S-TAB>', '<CMD>BufferLineCyclePrev<CR>', {})
+-- vim.api.nvim_set_keymap('n', '<TAB>', '<CMD>BufferLineCycleNext<CR>', {})
+-- vim.api.nvim_set_keymap('n', '<S-TAB>', '<CMD>BufferLineCyclePrev<CR>', {})
 vim.api.nvim_set_keymap('n', ';c', '<CMD>Bdelete<CR>', {})

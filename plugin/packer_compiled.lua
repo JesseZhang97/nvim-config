@@ -169,11 +169,6 @@ _G.packer_plugins = {
     path = "/Users/daydreamer/.local/share/nvim/site/pack/packer/start/leap.nvim",
     url = "https://github.com/ggandor/leap.nvim"
   },
-  ["lsp-colors.nvim"] = {
-    loaded = true,
-    path = "/Users/daydreamer/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
-    url = "https://github.com/folke/lsp-colors.nvim"
-  },
   ["lsp-format-modifications.nvim"] = {
     loaded = true,
     path = "/Users/daydreamer/.local/share/nvim/site/pack/packer/start/lsp-format-modifications.nvim",

@@ -24,6 +24,6 @@ end, { desc = 'Previous todo comment' })
 
 -- You can also specify a list of valid jump keywords
 
-vim.keymap.set('n', ']t', function()
+vim.keymap.set('n', ']e', function()
   todo.jump_next({ keywords = { 'ERROR', 'WARNING' } })
 end, { desc = 'Next error/warning todo comment' })
