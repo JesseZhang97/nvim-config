@@ -5,10 +5,10 @@ end
 
 git.setup({
   keymaps = {
-    blame = '<leader>gb',
+    blame = ';gb',
     quit_blame = 'q',
-    browser = '<leader>go',
-    diff = '<leader>gd',
-    diff_close = '<leader>gD',
+    browser = ';go',
+    diff = ';gd',
+    diff_close = ';gD',
   },
 })

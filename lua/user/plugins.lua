@@ -86,6 +86,7 @@ return packer.startup(function(use)
   use('folke/todo-comments.nvim')
   use('ggandor/leap.nvim')
   use('ggandor/flit.nvim')
+  use('rmagatti/auto-session')
 
   use({
     'nvim-treesitter/nvim-treesitter',
