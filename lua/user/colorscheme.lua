@@ -15,6 +15,8 @@ try
   let g:everforest_diagnostic_virtual_text = 'colored'
   let g:everforest_better_performance = 1
   colorscheme everforest
+  highlight StatusLine   cterm=none ctermfg=white ctermbg=black guibg=red
+  highlight StatusLineNC   cterm=none ctermfg=white ctermbg=black guibg=green
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark
