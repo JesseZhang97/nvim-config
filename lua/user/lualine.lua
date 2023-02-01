@@ -84,9 +84,7 @@ end
 
 ins_left({
   -- mode component
-  function()
-    return '☘'
-  end,
+  'mode',
   color = function()
     -- auto change color according to neovims mode
     local mode_color = {
@@ -118,6 +116,7 @@ ins_left({
 
 ins_left({
   'filename',
+  shorting_target = 25,
   cond = conditions.buffer_not_empty,
   color = { fg = colors.green, gui = 'bold' },
 })

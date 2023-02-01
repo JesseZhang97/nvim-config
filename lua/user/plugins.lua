@@ -66,7 +66,7 @@ return packer.startup(function(use)
 
   use('kyazdani42/nvim-web-devicons')
   use('nvim-lualine/lualine.nvim')
-  use('akinsho/bufferline.nvim')
+  -- use('akinsho/bufferline.nvim')
   use('JoosepAlviste/nvim-ts-context-commentstring')
   use('norcalli/nvim-colorizer.lua')
   use('jose-elias-alvarez/null-ls.nvim')
