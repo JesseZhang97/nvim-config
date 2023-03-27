@@ -1,10 +1,10 @@
 -- ENTRY OF ALL CONFIG FILES --
 
 -- basic --
-require('user.options')
-require('user.colorscheme')
-require('user.keymaps')
 require('user.plugins')
+require('user.options')
+require('user.keymaps')
+require('user.colorscheme')
 
 -- lsp & cmp --
 require('user.lsp')
@@ -17,12 +17,13 @@ require('user.lspsaga')
 require('user.null-ls')
 require('user.prettier')
 require('user.telescope')
-
+--
+-- require('user.nvim-tree')
 -- UI --
 require('user.colorizer')
 require('dressing')
 require('bufdelete')
--- require('user.bufferline')
+require('user.bufferline')
 
 -- edit tools --
 require('user.comment')
@@ -35,6 +36,7 @@ require('user.autosession')
 require('user.todo-comments')
 require('user.gitsigns')
 require('user.git')
+-- require('user.neo-tree')
 
 -- misc --
 require('impatient')

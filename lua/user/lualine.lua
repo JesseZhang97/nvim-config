@@ -116,9 +116,11 @@ ins_left({
 
 ins_left({
   'filename',
+  file_status = true,
+  path = 1,
   shorting_target = 25,
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.green, gui = 'bold' },
+  color = { fg = colors.yellow },
 })
 
 ins_left({ 'location' })

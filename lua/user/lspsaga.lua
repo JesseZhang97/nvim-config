@@ -4,15 +4,15 @@ if not status then
 end
 
 saga.setup({
-  server_filetype_map = {},
-  symbol_in_winbar = {
-    enable = true,
-    separator = '▸ ',
-    hide_keyword = true,
-    show_file = true,
-    folder_level = 2,
-    respect_root = false,
-    color_mode = false,
+  ui = {
+    winblend = 10,
+    border = 'rounded',
+    colors = {
+      normal_bg = '#002b36',
+    },
+  },
+  diagnostic = {
+    on_insert = false,
   },
 })
 

@@ -1,101 +1,112 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
+-- Automatically install lazy
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     'git',
     'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
   })
-  print('Installing packer close and reopen Neovim...')
-  vim.cmd([[packadd packer.nvim]])
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, 'packer')
+local status_ok, lazy = pcall(require, 'lazy')
 if not status_ok then
   return
 end
 
--- Have packer use a popup window
-packer.init({
-  display = {
-    open_fn = function()
-      return require('packer.util').float({ border = 'rounded' })
+-- Install your plugins here
+lazy.setup({
+  -- My plugins here
+  'nvim-lua/plenary.nvim',
+  'lewis6991/impatient.nvim',
+  -- Colorschemes
+  'sainnhe/everforest',
+  'shaunsingh/moonlight.nvim',
+
+  'neovim/nvim-lspconfig',
+
+  {
+    'glepnir/lspsaga.nvim',
+  },
+
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
+  'rafamadriz/friendly-snippets',
+
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+  },
+
+  'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  },
+
+  'kyazdani42/nvim-web-devicons',
+  'nvim-lualine/lualine.nvim',
+  'JoosepAlviste/nvim-ts-context-commentstring',
+  'norcalli/nvim-colorizer.lua',
+  'jose-elias-alvarez/null-ls.nvim',
+  'windwp/nvim-ts-autotag',
+  'MunifTanjim/prettier.nvim',
+  'lewis6991/gitsigns.nvim',
+  'dinhhuy258/git.nvim',
+  'joechrisellis/lsp-format-modifications.nvim',
+  'famiu/bufdelete.nvim',
+  'stevearc/dressing.nvim',
+  'numToStr/Comment.nvim',
+  'kylechui/nvim-surround',
+  'gennaro-tedesco/nvim-peekup',
+  'max397574/better-escape.nvim',
+  'windwp/nvim-autopairs',
+  'lukas-reineke/indent-blankline.nvim',
+  'folke/todo-comments.nvim',
+  'ggandor/leap.nvim',
+  'ggandor/flit.nvim',
+  'rmagatti/auto-session',
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    },
+  },
+
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    enent = 'InsertEnter',
+    config = function()
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    dependencies = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup()
     end,
   },
 })
-
--- Install your plugins here
-return packer.startup(function(use)
-  -- My plugins here
-  use('wbthomason/packer.nvim') -- Have packer manage itself
-  use('nvim-lua/plenary.nvim')
-  use('lewis6991/impatient.nvim')
-  -- Colorschemes
-  use('sainnhe/everforest')
-
-  use('neovim/nvim-lspconfig')
-  use('glepnir/lspsaga.nvim')
-  use('williamboman/mason.nvim')
-  use('williamboman/mason-lspconfig.nvim')
-
-  use('hrsh7th/nvim-cmp')
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-buffer')
-  use('hrsh7th/cmp-path')
-  use('hrsh7th/cmp-cmdline')
-  use('saadparwaiz1/cmp_luasnip')
-  use('L3MON4D3/LuaSnip')
-  use('rafamadriz/friendly-snippets')
-
-  use('nvim-telescope/telescope.nvim')
-  use({ 'nvim-telescope/telescope-file-browser.nvim' })
-
-  use('kyazdani42/nvim-web-devicons')
-  use('nvim-lualine/lualine.nvim')
-  -- use('akinsho/bufferline.nvim')
-  use('JoosepAlviste/nvim-ts-context-commentstring')
-  use('norcalli/nvim-colorizer.lua')
-  use('jose-elias-alvarez/null-ls.nvim')
-  use('windwp/nvim-ts-autotag')
-  use('MunifTanjim/prettier.nvim')
-  use('lewis6991/gitsigns.nvim')
-  use('dinhhuy258/git.nvim')
-  use('joechrisellis/lsp-format-modifications.nvim')
-  use('famiu/bufdelete.nvim')
-  use('stevearc/dressing.nvim')
-  use('numToStr/Comment.nvim')
-  use('kylechui/nvim-surround')
-  use('gennaro-tedesco/nvim-peekup')
-  use('max397574/better-escape.nvim')
-  use('windwp/nvim-autopairs')
-  use('lukas-reineke/indent-blankline.nvim')
-  use('folke/todo-comments.nvim')
-  use('ggandor/leap.nvim')
-  use('ggandor/flit.nvim')
-  use('rmagatti/auto-session')
-
-  use({
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  })
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
-end)
