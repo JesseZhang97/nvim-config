@@ -26,20 +26,15 @@ end
 lazy.setup({
   -- My plugins here
   'nvim-lua/plenary.nvim',
-  'lewis6991/impatient.nvim',
-  -- Colorschemes
   'sainnhe/everforest',
-  'shaunsingh/moonlight.nvim',
 
+  -- lsp
   'neovim/nvim-lspconfig',
-
-  {
-    'glepnir/lspsaga.nvim',
-  },
-
+  'glepnir/lspsaga.nvim',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
+  -- cmp
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
@@ -52,6 +47,9 @@ lazy.setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
   },
 
   'nvim-telescope/telescope.nvim',
@@ -60,53 +58,73 @@ lazy.setup({
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
 
+  'debugloop/telescope-undo.nvim',
   'kyazdani42/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
-  'JoosepAlviste/nvim-ts-context-commentstring',
   'norcalli/nvim-colorizer.lua',
   'jose-elias-alvarez/null-ls.nvim',
-  'windwp/nvim-ts-autotag',
   'MunifTanjim/prettier.nvim',
-  'lewis6991/gitsigns.nvim',
-  'dinhhuy258/git.nvim',
   'joechrisellis/lsp-format-modifications.nvim',
-  'famiu/bufdelete.nvim',
-  'stevearc/dressing.nvim',
-  'numToStr/Comment.nvim',
   'kylechui/nvim-surround',
-  'gennaro-tedesco/nvim-peekup',
   'max397574/better-escape.nvim',
+  'windwp/nvim-ts-autotag',
   'windwp/nvim-autopairs',
   'lukas-reineke/indent-blankline.nvim',
-  'folke/todo-comments.nvim',
-  'ggandor/leap.nvim',
-  'ggandor/flit.nvim',
-  'rmagatti/auto-session',
-
+  'lewis6991/gitsigns.nvim',
+  'dinhhuy258/git.nvim',
+  'numToStr/Comment.nvim',
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-    },
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    ---@type Flash.Config
+    opts = {},
+  -- stylua: ignore
+  keys = {
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+  },
   },
 
+  -- switch input method
+  'keaising/im-select.nvim',
+
+  -- misc
   {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    enent = 'InsertEnter',
+    'rmagatti/alternate-toggler',
     config = function()
-      require('copilot').setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
+      require('alternate-toggler').setup({
+        alternates = {
+          ['=='] = '!=',
+        },
       })
+      vim.keymap.set(
+        'n',
+        '<leader><space>', -- <space><space>
+        "<cmd>lua require('alternate-toggler').toggleAlternate()<CR>"
+      )
     end,
+    event = { 'BufReadPost' }, -- lazy load after reading a buffer
   },
-  {
-    'zbirenbaum/copilot-cmp',
-    dependencies = { 'copilot.lua' },
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-  },
+  -- copilot
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = 'Copilot',
+  --   enent = 'InsertEnter',
+  --   config = function()
+  --     require('copilot').setup({
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   'zbirenbaum/copilot-cmp',
+  --   dependencies = { 'copilot.lua' },
+  --   config = function()
+  --     require('copilot_cmp').setup()
+  --   end,
+  -- },
 })

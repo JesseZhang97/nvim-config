@@ -5,6 +5,7 @@ require('user.plugins')
 require('user.options')
 require('user.keymaps')
 require('user.colorscheme')
+-- require('user.autocmd')
 
 -- lsp & cmp --
 require('user.lsp')
@@ -18,28 +19,20 @@ require('user.null-ls')
 require('user.prettier')
 require('user.telescope')
 --
--- require('user.nvim-tree')
 -- UI --
 require('user.colorizer')
-require('dressing')
-require('bufdelete')
-require('user.bufferline')
 
 -- edit tools --
-require('user.comment')
 require('user.surround')
 require('user.indentline')
 require('nvim-autopairs').setup({})
+require('nvim-ts-autotag').setup({})
+require('Comment').setup()
 
 -- project management --
-require('user.autosession')
-require('user.todo-comments')
 require('user.gitsigns')
 require('user.git')
--- require('user.neo-tree')
 
 -- misc --
-require('impatient')
 require('better_escape').setup({})
-require('flit').setup({})
-require('leap').add_default_mappings()
+require('user.imselect')

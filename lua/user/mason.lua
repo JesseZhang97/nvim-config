@@ -9,6 +9,7 @@ if not status2 then
 end
 
 mason.setup({})
+
 lspconfig.setup({
   ensure_installed = {
     'cssls',
@@ -18,8 +19,8 @@ lspconfig.setup({
 })
 
 --Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspconfig').cssls.setup({
   capabilities = capabilities,

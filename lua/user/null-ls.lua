@@ -17,6 +17,7 @@ null_ls.setup({
       extra_args = { '--config-path', vim.fn.expand('~/.config/nvim/lua/user/settings/stylua.toml') },
     }),
   },
+
   on_attach = function(client, bufnr)
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

@@ -1,4 +1,5 @@
 local options = {
+  guicursor = 'i:ver1,i:blinkon1',
   backup = false, -- creates a backup file
   background = 'dark',
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
@@ -18,6 +19,7 @@ local options = {
   termguicolors = true, -- set term gui colors (most terminals support this)
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
+  undodir = os.getenv('HOME') .. '/.config/nvim/undodir',
   updatetime = 200, -- faster completion (4000ms default)
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true, -- convert tabs to spaces
@@ -31,7 +33,7 @@ local options = {
   wrap = false, -- display lines as one long line
   scrolloff = 8, -- is one of my fav
   sidescrolloff = 8,
-  guifont = 'MesloLGS NF', -- the font used in graphical neovim applications
+  guifont = 'VictorMono Nerd Font', -- the font used in graphical neovim applications
   showmatch = true,
 }
 
@@ -48,4 +50,9 @@ end
 
 vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.cmd([[set iskeyword+=-]])
--- vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+vim.cmd('set t_ZH=^[[3m')
+vim.cmd('set t_ZR=^[[23m')
+
+-- fix newline continuation of comment
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')

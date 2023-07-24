@@ -5,14 +5,21 @@ end
 
 saga.setup({
   ui = {
-    winblend = 10,
+    winblend = 0,
     border = 'rounded',
-    colors = {
-      normal_bg = '#002b36',
-    },
   },
   diagnostic = {
-    on_insert = false,
+    on_insert = true,
+  },
+  symbol_in_winbar = {
+    enable = true,
+    separator = ' ',
+    ignore_patterns = {},
+    hide_keyword = true,
+    show_file = true,
+    folder_level = 2,
+    respect_root = false,
+    color_mode = true,
   },
 })
 
@@ -21,6 +28,7 @@ vim.keymap.set('n', '<C-j>', '<CMD>Lspsaga diagnostic_jump_next<CR>', opts)
 vim.keymap.set('n', '<C-k>', function()
   require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
+vim.keymap.set('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 vim.keymap.set('n', 'K', '<CMD>Lspsaga hover_doc<CR>', opts)
 vim.keymap.set('n', 'gd', '<CMD>Lspsaga lsp_finder<CR>', opts)
 vim.keymap.set('n', 'gp', '<CMD>Lspsaga peek_definition<CR>', opts)

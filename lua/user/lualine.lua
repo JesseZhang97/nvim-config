@@ -115,12 +115,15 @@ ins_left({
 })
 
 ins_left({
-  'filename',
-  file_status = true,
-  path = 1,
-  shorting_target = 25,
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.yellow },
+  'diff',
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  cond = conditions.hide_in_width,
 })
 
 ins_left({ 'location' })
@@ -130,7 +133,7 @@ ins_left({ 'progress', color = { fg = colors.fg, gui = 'bold' } })
 ins_left({
   'diagnostics',
   sources = { 'nvim_diagnostic' },
-  symbols = { error = ' ', warn = ' ', info = ' ' },
+  symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },
@@ -194,17 +197,17 @@ ins_right({
   color = { fg = colors.violet, gui = 'bold' },
 })
 
-ins_right({
-  'diff',
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = ' ', modified = '柳 ', removed = ' ' },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-})
+-- ins_right({
+--   'diff',
+--   -- Is it me or the symbol for modified us really weird
+--   symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+--   diff_color = {
+--     added = { fg = colors.green },
+--     modified = { fg = colors.orange },
+--     removed = { fg = colors.red },
+--   },
+--   cond = conditions.hide_in_width,
+-- })
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
