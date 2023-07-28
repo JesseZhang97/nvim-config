@@ -60,11 +60,21 @@ keymap('n', 'te', ':tabedit<Return>', opts)
 --keymap('n', '<leader>ss', ':split<Return><C-w>w', opts)
 --keymap('n', '<leader>sv', ':vsplit<Return><C-w>w', opts)
 
+-- Better splits navigation
+keymap('n', ';j', '<C-w>j', opts)
+keymap('n', ';k', '<C-w>k', opts)
+keymap('n', ';h', '<C-w>h', opts)
+keymap('n', ';l', '<C-w>l', opts)
+
 -- Resize with arrows
-keymap('n', '<C-Up>', ':resize -2<CR>', opts)
-keymap('n', '<C-Down>', ':resize +2<CR>', opts)
-keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
-keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
+-- keymap('n', '<C-Up>', ':resize -2<CR>', opts)
+-- keymap('n', '<C-Down>', ':resize +2<CR>', opts)
+-- keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
+-- keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
+keymap('n', ';K', ':resize -2<CR>', opts)
+keymap('n', ';J', ':resize +2<CR>', opts)
+keymap('n', ';H', ':vertical resize -2<CR>', opts)
+keymap('n', ';L', ':vertical resize +2<CR>', opts)
 
 -- Copying the vscode behaviour of making tab splits
 -- keymap('n', '<C-\\>', '<CMD>vsplit<CR>', opts)
@@ -73,8 +83,8 @@ keymap('n', ';sv', '<CMD>vsplit<CR>', opts)
 keymap('n', ';ss', '<CMD>split<CR>', opts)
 
 -- Navigate buffers
-keymap('n', '<S-l>', ':bnext<CR>', opts)
-keymap('n', '<S-h>', ':bprevious<CR>', opts)
+-- keymap('n', '<S-l>', ':bnext<CR>', opts)
+-- keymap('n', '<S-h>', ':bprevious<CR>', opts)
 -- keymap('n', '<leader>[', '<CMD>bp<CR>', opts)
 -- keymap('n', '<leader>]', '<CMD>bn<CR>', opts)
 
@@ -97,8 +107,8 @@ keymap('v', 'p', '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
-keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
+-- keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
+-- keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- Use operator pending mode to visually select the whole buffer
 -- e.g. dA = delete buffer ALL, yA = copy whole buffer ALL

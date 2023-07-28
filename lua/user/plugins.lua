@@ -27,7 +27,6 @@ lazy.setup({
   -- My plugins here
   'nvim-lua/plenary.nvim',
   'sainnhe/everforest',
-
   -- lsp
   'neovim/nvim-lspconfig',
   'glepnir/lspsaga.nvim',
